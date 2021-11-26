@@ -1,57 +1,80 @@
-//Lista som ska vara global
-let myList1 = [];
-let myList2 = [];
+const expenses = [];
+const income = [];
 
-document.querySelector("#addBtn").addEventListener("click", function(e){
-    e.preventDefault()
 
-    const option = document.querySelector(".form-select").value
-    console.log(option)
-    let description = document.querySelector("#input-description").value
-    let money = document.querySelector("#input-value").value
+//Local Storage
+const localStorageTransactions = JSON.parse(localStorage.getItem("transactions"));
 
-    if(!description || !money) return alert ("Please fill in information!")
-    let li = document.createElement("li")
-    li.innerText = description + " " + money
-    li.setAttribute("class", "list-group-item")
-    //console.log(li)
 
-    //if income
-    if (option == "+") {
-        document.querySelector("#myList1").appendChild(li)
-        myList1.push(money)
-
+//Input elements
+function getInput(){
+    let elements = {
+        type: document.getElementById('input-type'),
+        description: document.getElementById('input-description'),
+        ammount: document.getElementById('input-value'),
     }
 
-    else {
-        document.querySelector("#myList2").appendChild(li)
-        myList2.push(money)
+    //Definera data object
+    let inputData = {
+        type: elements.type.value,
+        description: elements.description.value,
+        ammount: elements.ammount.value,
     }
 
-    document.querySelector("#input-description").value=""
-    document.querySelector("#input-value").value=""
+    //Reset input values
+    elements.type.value = "choose";
+    elements.description.value = null;
+    elements.ammount.value = null;
 
-    var incomeAmount = 0;
-
-    for (var i = 0; i < myList1.length; i++){
-        incomeAmount += Number(myList1[i]);
-     
+    //Lägg till values till expenses eller income
+    if(inputData.type === "true"){
+        income.push(inputData);
+        renderTable('income-table', ['Beskrivning', 'Summa'], income);
+    }else{
+        expenses.push(inputData);
+        renderTable('expenses-table', ['Beskrivning', 'Summa'], expenses);
     }
-    const incomes = document.querySelector(".incomeList")
-    incomes.textContent = incomeAmount + " kr"
+}
+// Skapa inkomst och utgift listor
 
-    var expenseAmount = 0;
+function renderTable(tableId, tableHeaderArray, data){
+    let table = document.getElementById(tableId);
+    removeAllChildNodes(table);
+     let tableHeadRow = document.createElement('tr');
+    tableHeaderArray.forEach((colName)=>{
+        let col = document.createElement('th');
+        col.innerText = colName;
+        tableHeadRow.appendChild(col);
+    });
+    table.appendChild(tableHeadRow);
+    data.forEach((colData)=>{
+        let dataRow = document.createElement('tr');
+        let col1 = document.createElement('td');
+        col1.innerText = colData.description;
+        let col2 = document.createElement('td');
+        col2.innerText = colData.ammount + 'kr';
+        dataRow.appendChild(col1);
+        dataRow.appendChild(col2);
+        table.appendChild(dataRow);
+    });
 
-    for (var i = 0; i < myList2.length; i++){
-        expenseAmount += Number(myList2[i]);
-    }
-
-    const expenses = document.querySelector(".expenseList")
-    expenses.textContent = expenseAmount + " kr"
-
-
-    const balances = document.querySelector(".balanceList")
-    balances.textContent = ((incomeAmount - expenseAmount) + " kr")
-
- 
+// Rakib
+//Uppdatera listor
+let summa = 0
+income.forEach( (singleIncome)=> {
+summa += Number(singleIncome.ammount)
 })
+
+ document.getElementById("income").textConten = summa
+    console.log(income)
+    console.log(summa)
+    console.log(expenses)
+
+
+}
+//Tar bort alla html child elements från parent element
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}

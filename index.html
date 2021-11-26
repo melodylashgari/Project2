@@ -5,18 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Uppgit 2</title>
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;600&display=swap" rel="stylesheet">
+    <!-- CSS -->
     <link rel="stylesheet" href="./css/main.css" />
-    <script src="main.js" defer></script>
+    <!-- JS -->
+    <script src="./main.js" defer></script>
   </head>
 
   <body>
     <div id="container">
 
-        <!--Header-->
+        <!--Budget total-->
         <header>
             <div class="start-container">
              <h3>BALANS</h3>
@@ -26,19 +30,19 @@
 
 
       <div class="box-container">
-        <!--Inkomst-->
+        <!--Inkomstlista-->
         <h3 class="table-title">Inkomst</h3>
         <table id="income-table"></table>
         <p id="income" class="income">+0 SEK</p>
 
-        <!--Utgift-->
+        <!--Utgiftlista-->
         <h3 class="table-title">Utgift</h3>
         <table id="expenses-table"></table>
         <p id="expense" class="expense">-0 SEK</p>
       </div>
 
       <!--Formulär-->
-    <div id="input-row">
+      <div id="input-row">
         <select id="input-type">
           <option value="choose">Välj alternativ</option>
           <option value="true">Inkomst</option>
@@ -62,6 +66,5 @@
         <!--Knapp-->
         <button class="btn-list" onClick="getInput()"><i class="fa fa-plus" aria-hidden="true"></i></button>
       </div>
-    </div>
   </body>
 </html>
