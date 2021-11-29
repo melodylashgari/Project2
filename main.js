@@ -1,10 +1,6 @@
 const expenses = [];
 const income = [];
-
-//Local Storage
-const localStorageTransactions = JSON.parse(
-  localStorage.getItem("transactions")
-);
+const balance = [];
 
 //Input elements
 function getInput() {
@@ -35,8 +31,8 @@ function getInput() {
     renderTable("expenses-table", ["Beskrivning", "Summa"], expenses);
   }
 }
-// Skapa inkomst och utgift listor
 
+// Skapa inkomst och utgift listor
 function renderTable(tableId, tableHeaderArray, data) {
   let table = document.getElementById(tableId);
   removeAllChildNodes(table);
@@ -66,20 +62,17 @@ function renderTable(tableId, tableHeaderArray, data) {
   });
 //Uppdatera värden i expense
   let summaE = 0;
-  income.forEach((singleExpense) => {
+  expenses.forEach((singleExpense) => {
     summaE += Number(singleExpense.ammount);
     document.querySelector("#expense").textContent = "-" + summaE + "kr";
   });
 //Uppdatera värden i balance
   let summaB = 0;
-  income.forEach((singleBalance) => {
+  balance.forEach((singleBalance) => {
     summaB += Number(singleBalance.ammount);
-    document.querySelector("#balance").textContent = summaB + "kr";
+    document.querySelector("#balance").textContent = summa - summaE + "kr";
   });
-
-  console.log(income);
-  console.log(summa);
-  console.log(expenses);
+  console.log(balance);
 
   //Tar bort alla html child elements från parent element
   function removeAllChildNodes(parent) {
