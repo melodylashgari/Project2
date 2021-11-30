@@ -19,12 +19,11 @@
 
   <body>
     <div id="container">
-
         <!--Budget total-->
         <header>
             <div class="start-container">
              <h3>BALANS</h3>
-             <h2 id="balance">0kr</h2>
+             <h2 class="balance" id="balance">0kr</h2>
             </div>
         </header>
 
@@ -57,16 +56,17 @@
             id="input-description"
             type="text"
             placeholder="Beskrivning..." required>
+          </div>
         </form>
         <form>
-            </div>
             <div class="form-input">
           <input id="input-value" type="number" placeholder="Kr..." required>
+        </div>
         </form>
-    </div>
 
         <!--Knapp-->
         <button class="btn-list" onClick="getInput()"><i class="fa fa-plus" aria-hidden="true"></i></button>
       </div>
+    </div>
   </body>
 </html>

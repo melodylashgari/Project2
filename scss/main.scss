@@ -1,5 +1,6 @@
 *{
     font-family: 'Quicksand', sans-serif;
+    font-weight: 300;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -32,6 +33,7 @@ body{
     width: 30%;
     opacity: 80%;
 }
+
 
 #input-description, #input-value{
 border: none;
@@ -76,4 +78,3 @@ tr:nth-child(even) {
     color: rgb(61, 61, 61);
     box-shadow: 8px 5px 30px rgb(73, 73, 73);;
 }
-
